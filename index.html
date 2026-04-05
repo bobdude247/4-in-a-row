@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4 in a Row</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>4 in a Row</h1>
+      <p>Drop discs into the 7 columns. First to connect 4 wins.</p>
+    </header>
+
+    <section class="panel" aria-label="Game controls">
+      <div class="color-picker-row">
+        <label for="player1Color">Player 1 Color</label>
+        <input id="player1Color" type="color" value="#ef4444" />
+      </div>
+      <div class="color-picker-row">
+        <label for="player2Color">Player 2 Color</label>
+        <input id="player2Color" type="color" value="#3b82f6" />
+      </div>
+      <button id="newGameBtn" class="btn">Start / Reset Game</button>
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section class="board-wrap" aria-label="4 in a row board">
+      <div id="columnButtons" class="column-buttons" role="toolbar" aria-label="Drop a disc"></div>
+      <div id="board" class="board" role="grid" aria-label="Connect Four board"></div>
+    </section>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
