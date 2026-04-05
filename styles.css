@@ -140,29 +140,39 @@ body {
 }
 
 .stack-pile {
-  --chip-size: 54px;
-  --chip-overlap: 16px;
+  --chip-size: 62px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  min-height: calc(var(--chip-size) + (5 * var(--chip-overlap)) + 10px);
+  min-height: 120px;
   padding: 0.2rem 0.15rem 0.4rem;
   position: relative;
 }
 
 .stack-chip {
   width: var(--chip-size);
-  height: 18px;
+  height: 16px;
   border-radius: 999px;
-  background: #334155;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(255 255 255 / 0.3) 0 14%,
+      transparent 14% 28%,
+      rgb(255 255 255 / 0.3) 28% 42%,
+      transparent 42% 58%,
+      rgb(255 255 255 / 0.3) 58% 72%,
+      transparent 72% 86%,
+      rgb(255 255 255 / 0.3) 86% 100%
+    ),
+    linear-gradient(180deg, rgb(255 255 255 / 0.2), rgb(15 23 42 / 0.4));
   border: 2px solid #1f2937;
-  opacity: 0.75;
-  margin-top: calc(var(--chip-overlap) * -1);
+  opacity: 0.82;
+  margin-top: -2px;
   box-shadow:
-    0 7px 10px -7px rgb(15 23 42 / 0.7),
-    inset 0 2px 2px rgb(255 255 255 / 0.25),
-    inset 0 -3px 3px rgb(15 23 42 / 0.45);
+    0 2px 4px -3px rgb(15 23 42 / 0.9),
+    inset 0 1px 1px rgb(255 255 255 / 0.28),
+    inset 0 -2px 2px rgb(15 23 42 / 0.45);
 }
 
 .stack-chip:first-child {
@@ -172,12 +182,19 @@ body {
 .drag-chip {
   opacity: 1;
   cursor: grab;
+  position: relative;
+  z-index: 4;
+  pointer-events: auto;
   border-color: #f8fafc;
   box-shadow:
     0 0 0 2px rgb(248 250 252 / 0.2),
-    0 7px 10px -7px rgb(15 23 42 / 0.7),
-    inset 0 2px 2px rgb(255 255 255 / 0.25),
-    inset 0 -3px 3px rgb(15 23 42 / 0.45);
+    0 2px 4px -3px rgb(15 23 42 / 0.9),
+    inset 0 1px 1px rgb(255 255 255 / 0.28),
+    inset 0 -2px 2px rgb(15 23 42 / 0.45);
+}
+
+.stack-pile .stack-chip:not(.drag-chip) {
+  pointer-events: none;
 }
 
 .drag-chip:active {
