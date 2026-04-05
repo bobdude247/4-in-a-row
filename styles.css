@@ -89,26 +89,58 @@ body {
 .board-wrap {
   display: grid;
   gap: 0.6rem;
+  min-width: 0;
 }
 
-.column-buttons {
+.game-area {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 0.4rem;
+  gap: 0.75rem;
 }
 
-.drop-btn {
-  border: 1px solid #60a5fa;
-  background: #1e40af;
-  color: #dbeafe;
-  border-radius: 8px;
-  padding: 0.45rem 0.2rem;
-  font-weight: 700;
-  cursor: pointer;
+.side-stack {
+  background: color-mix(in oklab, var(--panel), black 8%);
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
 }
 
-.drop-btn:disabled {
-  opacity: 0.45;
+.side-stack h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.stack-pile {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(38px, 1fr));
+  gap: 0.45rem;
+}
+
+.stack-chip {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #334155;
+  border: 2px solid #1f2937;
+  opacity: 0.55;
+}
+
+.drag-chip {
+  opacity: 1;
+  cursor: grab;
+  border-color: #f8fafc;
+  box-shadow: 0 0 0 2px rgb(248 250 252 / 0.2);
+}
+
+.drag-chip:active {
+  cursor: grabbing;
+}
+
+.drag-chip.disabled {
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
@@ -128,6 +160,12 @@ body {
   border-radius: 50%;
   background: var(--hole);
   border: 1px solid #1f2937;
+  transition: transform 140ms ease;
+}
+
+.cell.drop-target {
+  box-shadow: 0 0 0 3px #93c5fd inset;
+  transform: translateY(-2px);
 }
 
 .cell.win {
@@ -142,5 +180,21 @@ body {
 
   .app__header {
     grid-column: 1 / -1;
+  }
+
+  .game-area {
+    grid-column: 1 / -1;
+    grid-template-columns: 180px 1fr 180px;
+    align-items: start;
+  }
+}
+
+@media (max-width: 799px) {
+  .game-area {
+    grid-template-columns: 1fr;
+  }
+
+  .side-stack {
+    grid-template-columns: 1fr;
   }
 }

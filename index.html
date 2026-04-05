@@ -10,7 +10,7 @@
   <main class="app">
     <header class="app__header">
       <h1>4 in a Row</h1>
-      <p>Drop discs into the 7 columns. First to connect 4 wins.</p>
+      <p>Drag a chip from your side stack and release over a column. First to connect 4 wins.</p>
     </header>
 
     <section class="panel" aria-label="Game controls">
@@ -26,9 +26,34 @@
       <p id="status" class="status" aria-live="polite"></p>
     </section>
 
-    <section class="board-wrap" aria-label="4 in a row board">
-      <div id="columnButtons" class="column-buttons" role="toolbar" aria-label="Drop a disc"></div>
-      <div id="board" class="board" role="grid" aria-label="Connect Four board"></div>
+    <section class="game-area" aria-label="4 in a row board">
+      <aside id="player1Stack" class="side-stack" aria-label="Player 1 chip stack">
+        <h2>Player 1</h2>
+        <div class="stack-pile">
+          <div id="dragChip1" class="stack-chip drag-chip" draggable="true" title="Drag to board"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+        </div>
+      </aside>
+
+      <div class="board-wrap">
+        <div id="board" class="board" role="grid" aria-label="Connect Four board"></div>
+      </div>
+
+      <aside id="player2Stack" class="side-stack" aria-label="Player 2 chip stack">
+        <h2>Player 2</h2>
+        <div class="stack-pile">
+          <div id="dragChip2" class="stack-chip drag-chip" draggable="false" title="Drag to board"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+        </div>
+      </aside>
     </section>
   </main>
 

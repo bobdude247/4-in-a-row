@@ -14,6 +14,8 @@ A 2-player, single-screen **Connect Four** style game built with plain HTML, CSS
 ## Features
 
 - 2-player local gameplay on one screen
+- Left/right player chip stacks
+- Active player drags a chip from their stack and releases over a column to drop
 - Custom color picker for each player
 - Win detection + highlight of winning 4 discs
 - Draw detection
