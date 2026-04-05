@@ -46,6 +46,25 @@ body {
   gap: 0.75rem;
 }
 
+.mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mode-row label {
+  color: var(--muted);
+}
+
+.mode-row select {
+  border: 1px solid #374151;
+  background: #0b1228;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.4rem 0.5rem;
+}
+
 .color-picker-row {
   display: flex;
   align-items: center;
@@ -113,26 +132,52 @@ body {
   color: var(--muted);
 }
 
+.chip-count {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .stack-pile {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(38px, 1fr));
-  gap: 0.45rem;
+  --chip-size: 54px;
+  --chip-overlap: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: calc(var(--chip-size) + (5 * var(--chip-overlap)) + 10px);
+  padding: 0.2rem 0.15rem 0.4rem;
+  position: relative;
 }
 
 .stack-chip {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  width: var(--chip-size);
+  height: 18px;
+  border-radius: 999px;
   background: #334155;
   border: 2px solid #1f2937;
-  opacity: 0.55;
+  opacity: 0.75;
+  margin-top: calc(var(--chip-overlap) * -1);
+  box-shadow:
+    0 7px 10px -7px rgb(15 23 42 / 0.7),
+    inset 0 2px 2px rgb(255 255 255 / 0.25),
+    inset 0 -3px 3px rgb(15 23 42 / 0.45);
+}
+
+.stack-chip:first-child {
+  margin-top: 0;
 }
 
 .drag-chip {
   opacity: 1;
   cursor: grab;
   border-color: #f8fafc;
-  box-shadow: 0 0 0 2px rgb(248 250 252 / 0.2);
+  box-shadow:
+    0 0 0 2px rgb(248 250 252 / 0.2),
+    0 7px 10px -7px rgb(15 23 42 / 0.7),
+    inset 0 2px 2px rgb(255 255 255 / 0.25),
+    inset 0 -3px 3px rgb(15 23 42 / 0.45);
 }
 
 .drag-chip:active {
@@ -170,6 +215,18 @@ body {
 
 .cell.win {
   box-shadow: 0 0 0 3px #facc15 inset;
+}
+
+.cpu-chip-ghost {
+  position: fixed;
+  width: 44px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 2px solid #f8fafc;
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 8px 18px rgb(15 23 42 / 0.5);
+  transform: translate(-50%, -50%);
 }
 
 @media (min-width: 800px) {
