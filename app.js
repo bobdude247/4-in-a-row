@@ -104,10 +104,10 @@ function setStatusForTurn() {
   if (isCpuMode()) {
     statusEl.textContent =
       state.currentPlayer === 1
-        ? 'Your turn. Drag your chip to a column.'
+        ? 'Your turn. Drag a chip or tap your stack, then choose a column.'
         : "CPU's turn.";
   } else {
-    statusEl.textContent = `Player ${state.currentPlayer}'s turn. Drag your chip to a column.`;
+    statusEl.textContent = `Player ${state.currentPlayer}'s turn. Drag a chip or tap your stack, then choose a column.`;
   }
 
   statusEl.style.color = state.colors[state.currentPlayer];
@@ -240,10 +240,12 @@ function render() {
 
     if (slot === 0) {
       cell.style.background = 'var(--hole)';
+      cell.dataset.label = '';
       return;
     }
 
     cell.style.background = state.colors[slot];
+    cell.dataset.label = 'bd';
     if (winningSet.has(`${row},${col}`)) {
       cell.classList.add('win');
     }
@@ -306,6 +308,31 @@ function onBoardDrop(event) {
 
   if (col === null || col < 0 || col >= COLS || getLowestOpenRow(col) === -1) {
     render();
+    return;
+  }
+
+  onDrop(col);
+}
+
+function onStackTap(player) {
+  if (state.gameOver || state.cpuThinking) return;
+  if (player !== state.currentPlayer) return;
+  if (isCpuMode() && player === 2) return;
+
+  state.draggingPlayer = player;
+  statusEl.textContent =
+    player === 1 || !isCpuMode()
+      ? `Player ${player}, tap a board column to drop.`
+      : 'Tap a board column to drop.';
+  statusEl.style.color = state.colors[player];
+}
+
+function onBoardTap(event) {
+  if (state.gameOver || state.cpuThinking) return;
+  if (isCpuMode() && state.currentPlayer === 2) return;
+
+  const col = getDropColumnFromEvent(event);
+  if (col === null || col < 0 || col >= COLS || getLowestOpenRow(col) === -1) {
     return;
   }
 
@@ -523,6 +550,9 @@ function startCpuTurn() {
 
 newGameBtn.addEventListener('click', resetGame);
 gameModeEl.addEventListener('change', resetGame);
+player1StackEl.addEventListener('click', () => onStackTap(1));
+player2StackEl.addEventListener('click', () => onStackTap(2));
+boardEl.addEventListener('click', onBoardTap);
 player1ColorEl.addEventListener('change', () => {
   if (!state.gameOver) {
     state.colors[1] = player1ColorEl.value;
