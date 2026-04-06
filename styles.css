@@ -311,9 +311,21 @@ body {
   }
 
   .game-area {
-    grid-template-columns: 84px 1fr 84px;
+    grid-template-columns: 68px 68px minmax(0, 1fr);
     align-items: start;
     gap: 0.45rem;
+  }
+
+  #player1Stack {
+    order: 1;
+  }
+
+  #player2Stack {
+    order: 2;
+  }
+
+  .board-wrap {
+    order: 3;
   }
 
   .side-stack {
