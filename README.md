@@ -1,6 +1,6 @@
 # 4 in a Row
 
-A 2-player, single-screen **Connect Four** style game built with plain HTML, CSS, and JavaScript.
+A 2-player, single-screen **4 in a Row** style game built with plain HTML, CSS, and JavaScript.
 
 ## Game rules
 
