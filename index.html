@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4 in a Row</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>4 in a Row</h1>
+      <p>Drag a chip from your side stack and release over a column. First to get 4 in a row wins.</p>
+    </header>
+
+    <section class="panel" aria-label="Game controls">
+      <div class="mode-row">
+        <label for="gameMode">Game Mode</label>
+        <select id="gameMode">
+          <option value="pvp">2 Players (same screen)</option>
+          <option value="cpu">1 Player vs CPU</option>
+        </select>
+      </div>
+      <div class="color-picker-row">
+        <label for="player1Color">Player 1 Color</label>
+        <input id="player1Color" type="color" value="#f97316" />
+      </div>
+      <div class="color-picker-row">
+        <label for="player2Color">Player 2 Color</label>
+        <input id="player2Color" type="color" value="#22c55e" />
+      </div>
+      <button id="newGameBtn" class="btn">Start / Reset Game</button>
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section class="game-area" aria-label="4 in a row board">
+      <aside id="player1Stack" class="side-stack" aria-label="Player 1 chip stack">
+        <h2>Player 1</h2>
+        <p id="player1Count" class="chip-count"></p>
+        <div class="stack-pile">
+          <div id="dragChip1" class="stack-chip drag-chip" draggable="true" title="Drag to board"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+        </div>
+      </aside>
+
+      <div class="board-wrap">
+        <div id="board" class="board" role="grid" aria-label="4 in a row board"></div>
+      </div>
+
+      <aside id="player2Stack" class="side-stack" aria-label="Player 2 chip stack">
+        <h2 id="player2Label">Player 2</h2>
+        <p id="player2Count" class="chip-count"></p>
+        <div class="stack-pile">
+          <div id="dragChip2" class="stack-chip drag-chip" draggable="false" title="Drag to board"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+          <div class="stack-chip"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
